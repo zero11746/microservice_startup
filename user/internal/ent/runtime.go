@@ -2,27 +2,8 @@
 
 package ent
 
-import (
-	"user/internal/ent/carts"
-	"user/internal/ent/schema"
-)
-
 // The init function reads all schema descriptors with runtime code
 // (default values, validators, hooks and policies) and stitches it
 // to their package variables.
 func init() {
-	cartsFields := schema.Carts{}.Fields()
-	_ = cartsFields
-	// cartsDescQuantity is the schema descriptor for quantity field.
-	cartsDescQuantity := cartsFields[3].Descriptor()
-	// carts.DefaultQuantity holds the default value on creation for the quantity field.
-	carts.DefaultQuantity = cartsDescQuantity.Default.(int)
-	// cartsDescStatus is the schema descriptor for status field.
-	cartsDescStatus := cartsFields[4].Descriptor()
-	// carts.DefaultStatus holds the default value on creation for the status field.
-	carts.DefaultStatus = cartsDescStatus.Default.(int)
-	// cartsDescCompanyName is the schema descriptor for company_name field.
-	cartsDescCompanyName := cartsFields[6].Descriptor()
-	// carts.CompanyNameValidator is a validator for the "company_name" field. It is called by the builders before save.
-	carts.CompanyNameValidator = cartsDescCompanyName.Validators[0].(func(string) error)
 }

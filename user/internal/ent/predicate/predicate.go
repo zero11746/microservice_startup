@@ -6,5 +6,5 @@ import (
 	"entgo.io/ent/dialect/sql"
 )
 
-// Carts is the predicate function for carts builders.
-type Carts func(*sql.Selector)
+// User is the predicate function for user builders.
+type User func(*sql.Selector)

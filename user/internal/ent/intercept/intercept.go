@@ -6,10 +6,11 @@ import (
 	"context"
 	"fmt"
 
-	"entgo.io/ent/dialect/sql"
 	"user/internal/ent"
-	"user/internal/ent/carts"
 	"user/internal/ent/predicate"
+	"user/internal/ent/user"
+
+	"entgo.io/ent/dialect/sql"
 )
 
 // The Query interface represents an operation that queries a graph.
@@ -68,38 +69,38 @@ func (f TraverseFunc) Traverse(ctx context.Context, q ent.Query) error {
 	return f(ctx, query)
 }
 
-// The CartsFunc type is an adapter to allow the use of ordinary function as a Querier.
-type CartsFunc func(context.Context, *ent.CartsQuery) (ent.Value, error)
+// The UserFunc type is an adapter to allow the use of ordinary function as a Querier.
+type UserFunc func(context.Context, *ent.UserQuery) (ent.Value, error)
 
 // Query calls f(ctx, q).
-func (f CartsFunc) Query(ctx context.Context, q ent.Query) (ent.Value, error) {
-	if q, ok := q.(*ent.CartsQuery); ok {
+func (f UserFunc) Query(ctx context.Context, q ent.Query) (ent.Value, error) {
+	if q, ok := q.(*ent.UserQuery); ok {
 		return f(ctx, q)
 	}
-	return nil, fmt.Errorf("unexpected query type %T. expect *ent.CartsQuery", q)
+	return nil, fmt.Errorf("unexpected query type %T. expect *ent.UserQuery", q)
 }
 
-// The TraverseCarts type is an adapter to allow the use of ordinary function as Traverser.
-type TraverseCarts func(context.Context, *ent.CartsQuery) error
+// The TraverseUser type is an adapter to allow the use of ordinary function as Traverser.
+type TraverseUser func(context.Context, *ent.UserQuery) error
 
 // Intercept is a dummy implementation of Intercept that returns the next Querier in the pipeline.
-func (f TraverseCarts) Intercept(next ent.Querier) ent.Querier {
+func (f TraverseUser) Intercept(next ent.Querier) ent.Querier {
 	return next
 }
 
 // Traverse calls f(ctx, q).
-func (f TraverseCarts) Traverse(ctx context.Context, q ent.Query) error {
-	if q, ok := q.(*ent.CartsQuery); ok {
+func (f TraverseUser) Traverse(ctx context.Context, q ent.Query) error {
+	if q, ok := q.(*ent.UserQuery); ok {
 		return f(ctx, q)
 	}
-	return fmt.Errorf("unexpected query type %T. expect *ent.CartsQuery", q)
+	return fmt.Errorf("unexpected query type %T. expect *ent.UserQuery", q)
 }
 
 // NewQuery returns the generic Query interface for the given typed query.
 func NewQuery(q ent.Query) (Query, error) {
 	switch q := q.(type) {
-	case *ent.CartsQuery:
-		return &query[*ent.CartsQuery, predicate.Carts, carts.OrderOption]{typ: ent.TypeCarts, tq: q}, nil
+	case *ent.UserQuery:
+		return &query[*ent.UserQuery, predicate.User, user.OrderOption]{typ: ent.TypeUser, tq: q}, nil
 	default:
 		return nil, fmt.Errorf("unknown query type %T", q)
 	}

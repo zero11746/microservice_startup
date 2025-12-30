@@ -9,33 +9,25 @@ import (
 )
 
 var (
-	// CartsColumns holds the columns for the "carts" table.
-	CartsColumns = []*schema.Column{
-		{Name: "id", Type: field.TypeInt, Increment: true},
-		{Name: "cart_id", Type: field.TypeInt64, Unique: true},
-		{Name: "user_id", Type: field.TypeInt64},
-		{Name: "product_id", Type: field.TypeInt64},
-		{Name: "quantity", Type: field.TypeInt, Default: 1},
-		{Name: "status", Type: field.TypeInt, Nullable: true, Default: 1},
-		{Name: "company_id", Type: field.TypeInt64},
-		{Name: "company_name", Type: field.TypeString, Size: 255},
-		{Name: "created_at", Type: field.TypeTime, Nullable: true},
-		{Name: "updated_at", Type: field.TypeTime, Nullable: true},
+	// UserColumns holds the columns for the "User" table.
+	UserColumns = []*schema.Column{
+		{Name: "id", Type: field.TypeInt64, Increment: true},
+		{Name: "nick_name", Type: field.TypeInt64},
 	}
-	// CartsTable holds the schema information for the "carts" table.
-	CartsTable = &schema.Table{
-		Name:       "carts",
-		Columns:    CartsColumns,
-		PrimaryKey: []*schema.Column{CartsColumns[0]},
+	// UserTable holds the schema information for the "User" table.
+	UserTable = &schema.Table{
+		Name:       "User",
+		Columns:    UserColumns,
+		PrimaryKey: []*schema.Column{UserColumns[0]},
 	}
 	// Tables holds all the tables in the schema.
 	Tables = []*schema.Table{
-		CartsTable,
+		UserTable,
 	}
 )
 
 func init() {
-	CartsTable.Annotation = &entsql.Annotation{
-		Table: "carts",
+	UserTable.Annotation = &entsql.Annotation{
+		Table: "User",
 	}
 }
