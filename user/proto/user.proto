@@ -1,0 +1,13 @@
+syntax = "proto3";
+package user;
+option go_package = "user.service";
+
+message req {
+}
+
+message resp {
+}
+
+service User{
+  rpc Test(req) returns (resp) {}
+}

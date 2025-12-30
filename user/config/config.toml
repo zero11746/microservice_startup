@@ -1,0 +1,128 @@
+[server]
+name = "user_service"
+env = "dev"
+
+
+[redis.client]
+name = "redis"
+host = "localhost"
+port = 6379
+db = 0
+password = ""
+keep_alive = 1
+connect_timeout = 10
+write_timeout = 10
+read_timeout = 10
+
+# pool的配置
+[redis.pool]
+max_idle = 500
+max_active = 600
+idle_timeout = 3000
+max_conn_lifetime = 0
+pool_size = 300
+
+
+[mysql]
+# Service的名字
+name = "mysql"
+# 是否启用读写分离（false：不启用，true：启用）
+separation = false
+# 连接超时，ms，若不配置，使用默认值 5s
+conn_time_out = 50
+# 写数据超时，ms，若不配置，使用默认值 5s
+write_time_out = 50
+# 读数据超时，ms，若不配置，使用默认值 5s
+read_time_out = 500
+
+# 单库/主库配置（不启用读写分离时，使用这里的配置）
+[mysql.master]
+host = "localhost"
+port = 3306
+username = "root"
+password = "root123"
+db_name = "project"
+
+# 从库配置（仅当separation=true时生效，支持多个）
+[[mysql.slaves]]
+host = ""
+port = 3306
+username = ""
+password = ""
+db_name = ""
+
+[[mysql.slaves]]
+host = ""
+port = 3306
+username = ""
+password = ""
+db_name = ""
+
+# 其他配置
+db_driver = "mysql"
+conn_max_life_time = 10  # s
+max_idle_count = 0
+max_open_count = 0
+is_out_log = true
+
+sql_log_len = -1         # 打印sql内容，为0不打印，-1 为全部
+sql_args_log_len = -1    # 打印sql参数内容，为0不打印，-1 为全部
+log_id_transport = true  # 是否sql注释传递logid
+
+# DSNParams 可选参数
+dsn_params = "charset=utf8&collation=utf8mb4_unicode_ci&interpolateParams=true"
+
+
+[mongo]
+name = "mongodb_default"       # 客户端名称（标识用）
+host = "localhost"             # MongoDB 主机地址
+port = 27017                   # 端口（默认27017）
+username = ""                  # 用户名（本地开发默认无）
+password = ""                  # 密码（本地开发默认无）
+database = "social_platform"   # 默认数据库名
+auth_source = "admin"          # 认证数据库（默认admin，无认证可留空）
+connect_timeout = 5            # 连接超时时间（秒）
+max_pool_size = 100            # 连接池最大连接数
+min_pool_size = 10             # 连接池最小连接数
+max_conn_idle_time = 300       # 连接最大空闲时间（秒，超时自动关闭）
+
+
+[app_log]
+path = "./log"
+log_file = "/log/log"
+split = "d"                    # "h":小时 "d":天 "m":月 "w":周
+level = "debug"                # "debug" "info" "warn" "error" "fatal"
+stdout = true
+max_age = 168                  # 日志保存时长，单位小时
+format = "json"                # 配置日志文件格式，json，text
+[app_log.elk]
+is_send_elk = false
+kafka_addr = "localhost:9092"
+kafka_topic = "log"
+addr = "https://localhost:9200"
+index = "log"
+username = "elastic"             # ES 认证用户名（默认是 elastic）
+password = "wc245146"            # 你重置的 ES 密码（必填）
+api_key = ""                     # API 密钥（如果用 API 认证则填写，与用户名密码二选一）
+insecure_skip_verify = true      # 本地测试跳过 SSL 证书验证（生产环境设为 false）
+retry_on_status = [429, 502, 503, 504]
+max_retries = 3
+
+
+[jaeger]
+endpoints = "http://localhost:14268/api/traces"
+is_open_only_sampler_error = true
+
+
+[grpc]
+etcd_addr = "127.0.0.1:8882"   # etcd值的地址
+addr = "127.0.0.1:8882"       # 服务地址
+name = "user"               #  服务名称
+version = "1.0.0"              # 服务版本
+weight = 2                     # 服务权重
+
+
+[etcd]
+addrs = [                    # etcd地址
+  "127.0.0.1:2379"
+]

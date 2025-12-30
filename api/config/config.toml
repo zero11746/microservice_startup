@@ -1,0 +1,14 @@
+[server]
+name = "api"
+env = "dev"
+host = "0.0.0.0"
+port = 80
+
+[jaeger]
+endpoints = "http://localhost:14268/api/traces"
+is_open_only_sampler_error = true
+
+[etcd]
+addrs = [                    # etcd地址
+  "127.0.0.1:2379"
+]
