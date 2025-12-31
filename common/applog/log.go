@@ -1,17 +1,19 @@
 package applog
 
 import (
-	"common/applog/mq"
 	"encoding/json"
 	"fmt"
-	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
-	"github.com/rifflock/lfshook"
-	"github.com/sirupsen/logrus"
 	"io"
 	"log"
 	"os"
 	"path"
 	"time"
+
+	"common/applog/mq"
+
+	rotatelogs "github.com/lestrrat-go/file-rotatelogs"
+	"github.com/rifflock/lfshook"
+	"github.com/sirupsen/logrus"
 )
 
 // Logger 真正的执行器

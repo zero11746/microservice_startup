@@ -1,9 +1,11 @@
 package applog
 
 import (
-	esclient "common/es"
 	"crypto/tls"
 	"fmt"
+
+	esclient "common/es"
+
 	"github.com/elastic/go-elasticsearch/v8"
 )
 

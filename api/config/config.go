@@ -1,9 +1,11 @@
 package config
 
 import (
-	"common/env"
-	"github.com/BurntSushi/toml"
 	"path"
+
+	"common/env"
+
+	"github.com/BurntSushi/toml"
 )
 
 // ServerConfig 服务器配置

@@ -1,8 +1,9 @@
 package main
 
 import (
-	srv "common"
 	"context"
+
+	srv "common"
 	"user/pkg/grpc"
 	"user/pkg/initialize"
 )

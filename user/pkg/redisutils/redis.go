@@ -4,10 +4,11 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"time"
+
 	"user/config"
 
 	"github.com/redis/go-redis/v9"
-	"time"
 )
 
 var client *redis.Client

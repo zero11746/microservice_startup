@@ -1,10 +1,12 @@
 package config
 
 import (
+	"path"
+
 	"common/applog"
 	"common/env"
+
 	"github.com/BurntSushi/toml"
-	"path"
 )
 
 type Config struct {

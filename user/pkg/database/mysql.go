@@ -1,14 +1,16 @@
 package database
 
-/*import (
+import (
 	"database/sql"
-	"entgo.io/ent/dialect"
-	dialectsql "entgo.io/ent/dialect/sql"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
 	"time"
+
 	"user/config"
 	"user/internal/ent"
+
+	"entgo.io/ent/dialect"
+	dialectsql "entgo.io/ent/dialect/sql"
+	_ "github.com/go-sql-driver/mysql"
 )
 
 var (
@@ -113,4 +115,4 @@ func InitMysqlConnect() (err error) {
 	entClient = ent.NewClient(ent.Driver(drv), ent.Debug())
 
 	return nil
-}*/
+}

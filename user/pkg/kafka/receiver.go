@@ -3,8 +3,9 @@ package elk
 import (
 	"context"
 	"fmt"
-	"github.com/segmentio/kafka-go"
 	"log"
+
+	"github.com/segmentio/kafka-go"
 )
 
 type KafkaReader struct {

@@ -2,6 +2,7 @@ package tracer
 
 import (
 	"context"
+
 	"go.opentelemetry.io/otel/codes"
 	sdktrace "go.opentelemetry.io/otel/sdk/trace"
 )

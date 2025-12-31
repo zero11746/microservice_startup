@@ -1,12 +1,14 @@
 package grpc
 
 import (
+	"context"
+
 	"common/applog"
 	"common/errs"
 	"common/tracer"
-	"context"
-	"google.golang.org/grpc"
 	"user/pkg/errors"
+
+	"google.golang.org/grpc"
 )
 
 func TraceIDInterceptor() grpc.UnaryServerInterceptor {

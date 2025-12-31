@@ -3,12 +3,13 @@ package mq
 import (
 	"context"
 	"errors"
-	"github.com/segmentio/kafka-go"
 	"log"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
+
+	"github.com/segmentio/kafka-go"
 )
 
 var globalKafkaWriter *KafkaWriter

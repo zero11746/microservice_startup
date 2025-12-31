@@ -2,10 +2,11 @@ package applog
 
 import (
 	"fmt"
-	"github.com/fatih/structs"
 	"runtime"
 	"strings"
 	"time"
+
+	"github.com/fatih/structs"
 )
 
 type FieldMap map[string]any

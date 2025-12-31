@@ -2,16 +2,18 @@ package grpc
 
 import "C"
 import (
+	"context"
+	"log"
+
 	"api/config"
 	"common/applog"
 	"common/discovery"
 	"common/tracer"
-	"context"
+	userservice "grpc/user/user"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/resolver"
-	userservice "grpc/user/user"
-	"log"
 )
 
 var UserServiceClient userservice.UserClient

@@ -1,19 +1,21 @@
 package grpc
 
 import (
-	"common/applog"
-	discovery2 "common/discovery"
-	"common/tracer"
 	"context"
 	"errors"
 	"fmt"
-	grpcmiddleware "github.com/grpc-ecosystem/go-grpc-middleware"
-	"google.golang.org/grpc"
-	userservice "grpc/user/user"
 	"log"
 	"net"
+
+	"common/applog"
+	"common/discovery"
+	"common/tracer"
+	userservice "grpc/user/user"
 	"user/config"
 	"user/internal/service"
+
+	grpcmiddleware "github.com/grpc-ecosystem/go-grpc-middleware"
+	"google.golang.org/grpc"
 )
 
 type gRPCConfig struct {
@@ -68,15 +70,15 @@ func RegisterGrpc() (*grpc.Server, error) {
 	return s, nil
 }
 
-func RegisterEtcdServer(ctx context.Context) (*discovery2.Register, error) {
-	info := discovery2.Server{
+func RegisterEtcdServer(ctx context.Context) (*discovery.Register, error) {
+	info := discovery.Server{
 		Name:    config.GetConfig().Grpc.Name,
 		Addr:    config.GetConfig().Grpc.EtcdAddr,
 		Version: config.GetConfig().Grpc.Version,
 		Weight:  config.GetConfig().Grpc.Weight,
 	}
 
-	r := discovery2.NewRegister(config.GetConfig().Etcd.Addrs, applog.WrapGDPLogger(ctx))
+	r := discovery.NewRegister(config.GetConfig().Etcd.Addrs, applog.WrapGDPLogger(ctx))
 	r, _, err := r.Register(info, 2)
 	if err != nil {
 		log.Fatalln(err)

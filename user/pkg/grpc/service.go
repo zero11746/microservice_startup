@@ -1,15 +1,17 @@
 package grpc
 
 import (
+	"context"
+	"log"
+
 	"common/applog"
 	"common/discovery"
 	"common/tracer"
-	"context"
+	"user/config"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"google.golang.org/grpc/resolver"
-	"log"
-	"user/config"
 )
 
 func InitRpcService() {

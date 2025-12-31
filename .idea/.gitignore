@@ -7,3 +7,5 @@
 /dataSources/
 /dataSources.local.xml
 /sqldialects.xml
+/codeStyles/codeStyleConfig.xml
+/go.imports.xml

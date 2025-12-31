@@ -1,8 +1,9 @@
 package errors
 
 import (
-	"common/errs"
 	"fmt"
+
+	"common/errs"
 )
 
 func NewDBError(format string, a ...any) *errs.BError {

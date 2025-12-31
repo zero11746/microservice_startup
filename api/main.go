@@ -1,12 +1,13 @@
 package main
 
 import (
+	"context"
+	"log"
+
 	"api/config"
 	"api/web"
 	srv "common"
 	"common/env"
-	"context"
-	"log"
 )
 
 func main() {

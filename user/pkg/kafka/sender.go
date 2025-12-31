@@ -3,9 +3,10 @@ package elk
 import (
 	"context"
 	"errors"
-	"github.com/segmentio/kafka-go"
 	"log"
 	"time"
+
+	"github.com/segmentio/kafka-go"
 )
 
 type LogData struct {

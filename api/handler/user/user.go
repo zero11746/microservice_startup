@@ -4,8 +4,9 @@ import (
 	"api/grpc"
 	"common/errs"
 	"common/httputils"
-	"github.com/gin-gonic/gin"
 	userservice "grpc/user/user"
+
+	"github.com/gin-gonic/gin"
 )
 
 type TestHandler struct {

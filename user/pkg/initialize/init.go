@@ -1,10 +1,11 @@
 package initialize
 
 import (
-	"common/applog"
-	"common/env"
 	"context"
 	"log"
+
+	"common/applog"
+	"common/env"
 	"user/config"
 	"user/pkg/database"
 	"user/pkg/mongodbutils"

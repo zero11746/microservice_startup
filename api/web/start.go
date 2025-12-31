@@ -1,17 +1,19 @@
 package web
 
 import (
+	"errors"
+	"fmt"
+	"log"
+	"net/http"
+
 	"api/config"
 	"api/router"
 	"common/tracer"
-	"errors"
-	"fmt"
+
 	"github.com/gin-gonic/gin"
 	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/propagation"
-	"log"
-	"net/http"
 )
 
 func Start() (*http.Server, error) {

@@ -1,15 +1,17 @@
 package discovery
 
 import (
-	"common/applog"
 	"context"
 	"encoding/json"
 	"errors"
-	clientv3 "go.etcd.io/etcd/client/v3"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
+
+	"common/applog"
+
+	clientv3 "go.etcd.io/etcd/client/v3"
 )
 
 // Register for grpc server

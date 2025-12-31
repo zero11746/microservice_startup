@@ -1,13 +1,15 @@
 package mq
 
 import (
-	esclient "common/es"
 	"context"
 	"errors"
 	"fmt"
-	"github.com/segmentio/kafka-go"
 	"log"
 	"time"
+
+	esclient "common/es"
+
+	"github.com/segmentio/kafka-go"
 )
 
 var globalKafkaReader *KafkaReader
