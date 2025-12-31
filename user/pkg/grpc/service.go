@@ -2,7 +2,7 @@ package grpc
 
 import (
 	"common/applog"
-	discovery2 "common/discovery"
+	"common/discovery"
 	"common/tracer"
 	"context"
 	"google.golang.org/grpc"
@@ -14,7 +14,7 @@ import (
 
 func InitRpcService() {
 	ctx := context.Background()
-	etcdRegister := discovery2.NewResolver(config.GetConfig().Etcd.Addrs, applog.WrapGDPLogger(ctx))
+	etcdRegister := discovery.NewResolver(config.GetConfig().Etcd.Addrs, applog.WrapGDPLogger(ctx))
 	resolver.Register(etcdRegister)
 
 	otelHandler, err := tracer.JaegerClientHandler(
@@ -28,7 +28,7 @@ func InitRpcService() {
 	}
 
 	_, err = grpc.NewClient(
-		"etcd:///project",
+		discovery.BuildResolverUrl("project"),
 		grpc.WithStatsHandler(otelHandler),
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)

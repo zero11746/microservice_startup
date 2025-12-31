@@ -33,7 +33,7 @@ func InitRpcServiceClient() {
 	}
 
 	conn, err := grpc.NewClient(
-		"etcd:///user",
+		discovery.BuildResolverUrl("user"),
 		grpc.WithStatsHandler(otelHandler),
 		grpc.WithTransportCredentials(insecure.NewCredentials()),
 	)

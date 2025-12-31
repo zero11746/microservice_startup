@@ -16,6 +16,7 @@ type Server struct {
 	Weight  int    `json:"weight"`  //服务权重
 }
 
+// BuildPrefix 构建服务前缀/project/
 func BuildPrefix(info Server) string {
 	if info.Version == "" {
 		return fmt.Sprintf("/%s/", info.Name)
@@ -23,6 +24,7 @@ func BuildPrefix(info Server) string {
 	return fmt.Sprintf("/%s/%s/", info.Name, info.Version)
 }
 
+// BuildRegPath 构建注册路径，服务端使用/project/192.168....
 func BuildRegPath(info Server) string {
 	return fmt.Sprintf("%s%s", BuildPrefix(info), info.Addr)
 }

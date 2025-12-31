@@ -74,7 +74,6 @@ func (r *Resolver) start() (chan<- struct{}, error) {
 	if err != nil {
 		return nil, err
 	}
-	resolver.Register(r)
 
 	r.closeCh = make(chan struct{})
 
@@ -90,6 +89,7 @@ func (r *Resolver) start() (chan<- struct{}, error) {
 // watch update events
 func (r *Resolver) watch() {
 	ticker := time.NewTicker(time.Minute)
+	// 监听服务变化
 	r.watchCh = r.cli.Watch(context.Background(), r.keyPrefix, clientv3.WithPrefix())
 
 	for {
