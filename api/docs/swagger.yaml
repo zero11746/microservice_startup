@@ -1,0 +1,64 @@
+basePath: /api/v1
+definitions:
+  httputil.ResponseData:
+    properties:
+      code:
+        type: integer
+      data: {}
+      message:
+        type: string
+      requestId:
+        type: string
+      status:
+        type: integer
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@swagger.io
+    name: API Support
+    url: http://www.swagger.io/support
+  description: This is a sample server celler server.
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /api/test:
+    post:
+      consumes:
+      - application/json
+      description: get string by ID
+      parameters:
+      - description: Account ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/httputil.ResponseData'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/httputil.ResponseData'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/httputil.ResponseData'
+      summary: Show an account
+      tags:
+      - accounts
+securityDefinitions:
+  BearerAuth:
+    description: 请输入 JWT Token，格式为：Bearer {你的Token值}
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

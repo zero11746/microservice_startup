@@ -3,17 +3,12 @@ package web
 import (
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 
 	"api/config"
 	"api/router"
-	"common/tracer"
 
 	"github.com/gin-gonic/gin"
-	"go.opentelemetry.io/contrib/instrumentation/github.com/gin-gonic/gin/otelgin"
-	"go.opentelemetry.io/otel"
-	"go.opentelemetry.io/otel/propagation"
 )
 
 func Start() (*http.Server, error) {
@@ -21,7 +16,7 @@ func Start() (*http.Server, error) {
 	gin.SetMode(gin.DebugMode)
 
 	// 创建jaeger trace
-	tp, tpErr := tracer.JaegerTraceProvider(
+	/*tp, tpErr := tracer.JaegerTraceProvider(
 		config.GetConfig().Jaeger.Endpoints,
 		config.GetConfig().Server.Name,
 		config.GetConfig().Server.Env,
@@ -31,13 +26,13 @@ func Start() (*http.Server, error) {
 		log.Fatal(tpErr)
 	}
 	otel.SetTracerProvider(tp)
-	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))
+	otel.SetTextMapPropagator(propagation.NewCompositeTextMapPropagator(propagation.TraceContext{}, propagation.Baggage{}))*/
 
 	// 设置中间件
 	engine.Use(
 		gin.Logger(),
 		gin.Recovery(),
-		otelgin.Middleware(config.GetConfig().Server.Name),
+		//otelgin.Middleware(config.GetConfig().Server.Name),
 	)
 	// 加载路由
 	router.InitRouter(engine)
